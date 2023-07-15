@@ -6,8 +6,8 @@ rm kwdb.xml
 
 mkdir -p "$OUTPUT_DIR/snippets/events"
 
-curl https://raw.githubusercontent.com/ShadowGear-SL/kwdb/master/lsl2dfg/LSL2dfg.py -o lsl2dfg/LSL2dfg.py
-curl https://raw.githubusercontent.com/ShadowGear-SL/kwdb/master/database/kwdb.xml -o kwdb.xml
+curl https://raw.githubusercontent.com/ShadowGear-SL/kwdb/dev/lsl2dfg/LSL2dfg.py -o lsl2dfg/LSL2dfg.py
+curl https://raw.githubusercontent.com/ShadowGear-SL/kwdb/dev/database/kwdb.xml -o kwdb.xml
 
 # for LSL/OSSL plugin
 python lsl2dfg/LSL2dfg.py -u -d kwdb.xml -f sublime_completions_constants -g sl -i inputs/LSLConstants.sublime-completions.in -o "$OUTPUT_DIR/LSLConstants.sublime-completions" -y
