@@ -48,39 +48,27 @@ def output(document, defaultdescs, databaseversion, infilename, outfilename, lan
 
   try:
     for line in inputlines:
-      if line.startswith("<<< INTEGER CONSTANTS >>>"):
-        for entry in constants_integer:
-          outf.write("$ra->add( '{0}' );\n".format(entry["name"]))          
-      elif line.startswith("<<< STRING CONSTANTS >>>"):
-        for entry in constants_string:
-          outf.write("$ra->add( '{0}' );\n".format(entry["name"]))          
-      elif line.startswith("<<< FLOAT CONSTANTS >>>"):
-        for entry in constants_float:
-          outf.write("$ra->add( '{0}' );\n".format(entry["name"]))          
-      elif line.startswith("<<< COMPOUND CONSTANTS >>>"):
-        for entry in constants_compound:
-          outf.write("$ra->add( '{0}' );\n".format(entry["name"]))          
-      elif line.startswith("<<< EVENTS >>>"):
-        for entry in events:
-          outf.write("$ra->add( '{0}' );\n".format(entry["name"]))
-      elif line.startswith("<<< FUNCTIONS >>>"):
-        for entry in functions:
-          outf.write("$ra->add( '{0}' );\n".format(entry["name"]))
-      elif line.startswith("<<< INVALIDS >>>"):
-        for entry in invalids:
-          outf.write("$ra->add( '{0}' );\n".format(entry["name"]))
-      elif line.startswith("<<< VERSION >>>"):
-        outf.write("my $version = '{0}';\n".format(databaseversion))
-        outf.write("my $infile = 'templates/{0}.tmLanguage.json.tmpl';\n".format(tag))
-      else:
-        outf.write(line)
+      if "[@--$valid_constants_integer--@]" in line:
+        line = line.replace("[@--$valid_constants_integer--@]", "(" + "|".join(map(lambda x: x["name"], constants_integer)) + ")")
+      elif "[@--$valid_constants_string--@]" in line:
+        line = line.replace("[@--$valid_constants_string--@]", "(" + "|".join(map(lambda x: x["name"], constants_string)) + ")")
+      elif "[@--$valid_constants_float--@]" in line:
+        line = line.replace("[@--$valid_constants_float--@]", "(" + "|".join(map(lambda x: x["name"], constants_float)) + ")")
+      elif "[@--$valid_constants_compound--@]" in line:
+        line = line.replace("[@--$valid_constants_compound--@]", "(" + "|".join(map(lambda x: x["name"], constants_compound)) + ")")
+      elif "[@--$valid_events--@]" in line:
+        line = line.replace("[@--$valid_events--@]", "(" + "|".join(map(lambda x: x["name"], events)) + ")")
+      elif "[@--$valid_functions--@]" in line:
+        line = line.replace("[@--$valid_functions--@]", "(" + "|".join(map(lambda x: x["name"], functions)) + ")")
+      elif "[@--$invalids--@]" in line:
+        line = line.replace("[@--$invalids--@]", "(" + "|".join(map(lambda x: x["name"], invalids)) + ")")
+      elif "[@--$version--@]" in line:
+        line = line.replace("[@--$version--@]", databaseversion)
+
+      outf.write(line)
 
   finally:
     if outfilename is not None:
       outf.close()
-
-      # output for this function is perl script.
-      # usually this function is called without outfilename, hence written in sysout.
-      # after then perl will execute the contents in outf.
 
 pass

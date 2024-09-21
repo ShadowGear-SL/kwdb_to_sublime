@@ -22,7 +22,7 @@ curl https://raw.githubusercontent.com/ShadowGear-SL/kwdb/dev/database/kwdb.xml 
 # DEPRECATED - still works but I recommend to create your own scripts if you use this script for other editors
 # python lsl2dfg/LSL2dfg.py -u -d kwdb.xml -f sublime_tmLanguage -g sl -t LSL -i inputs/convertkeywords.pl.in | perl > "$OUTPUT_DIR/lsl.tmLanguage"
 # python lsl2dfg/LSL2dfg.py -u -d kwdb.xml -f sublime_tmLanguage -g os -t OSSL -i inputs/convertkeywords.pl.in | perl > "$OUTPUT_DIR/ossl.tmLanguage"
-python lsl2dfg/LSL2dfg.py -u -d kwdb.xml -f vscode_tmLanguage -g sl -t LSL -i inputs/convertkeywords.pl.in | perl > "$OUTPUT_DIR/lsl.tmLanguage.json"
+python lsl2dfg/LSL2dfg.py -u -d kwdb.xml -f vscode_tmLanguage -g sl -t LSL -i inputs/tmLanguage.json.in -o "$OUTPUT_DIR/lsl.tmLanguage.json"
 
 # for tooltip plugin
 # python lsl2dfg/LSL2dfg.py -u -d kwdb.xml -f sublime_tooltip_data -g sl,os -i inputs/tooltipdata.json.in -o "$OUTPUT_DIR_TOOLTIP/tooltipdata.json" -y
