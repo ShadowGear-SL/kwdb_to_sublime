@@ -1,3 +1,4 @@
+#!/bin/bash
 export OUTPUT_DIR=${CONVERTER_OUTPUT_DIR:-outputs}
 export OUTPUT_DIR_TOOLTIP=${CONVERTER_OUTPUT_DIR_TOOLTIP:-outputs}
 

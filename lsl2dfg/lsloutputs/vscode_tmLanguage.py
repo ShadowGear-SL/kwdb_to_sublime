@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import sys
+import io
 
 def output(document, defaultdescs, databaseversion, infilename, outfilename, lang, tag):
 
@@ -30,7 +31,7 @@ def output(document, defaultdescs, databaseversion, infilename, outfilename, lan
         invalids.append(element)
 
   if infilename is not None:
-    inf = open(infilename, "r")
+    inf = io.open(infilename, "r", encoding='utf-8')
   else:
     inf = sys.stdin
 
@@ -42,7 +43,7 @@ def output(document, defaultdescs, databaseversion, infilename, outfilename, lan
       inf.close()
 
   if outfilename is not None:
-    outf = open(outfilename, "w")
+    outf = io.open(outfilename, "w", encoding='utf-8')
   else:
     outf = sys.stdout
 
